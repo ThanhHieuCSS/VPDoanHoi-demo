@@ -11,7 +11,10 @@
   <div id="reader"></div>
   <p id="status">⏳ Đang chờ quét...</p>
   <p>Mã QR đã quét: <span id="qrText" class="highlight">...</span></p>
-  <audio id="beep" src="beep.mp3" preload="auto"></audio>
+  <audio id="beep" preload="auto">
+    <source src="beep.m4a" type="audio/mp4">
+    <source src="beep.mp3" type="audio/mpeg">
+  </audio>
   <script src="script.js"></script>
 </body>
 </html>
