@@ -28,10 +28,10 @@ body {
 #reader {
   width: 100%;
   max-width: 320px;
-  height: 320px; /* đặt chiều cao cố định */
+  height: 350px; /* đặt chiều cao cố định */
   margin: auto;
   border: 2px solid #ccc;
-  border-radius: 8px;
+  border-radius: 8px; /* bo góc*/
   overflow: hidden;
 }
 
