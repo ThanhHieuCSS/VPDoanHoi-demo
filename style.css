@@ -28,7 +28,7 @@ body {
 #reader {
   width: 100%;
   max-width: 320px;
-  height: 240px; /* đặt chiều cao cố định */
+  height: 320px; /* đặt chiều cao cố định */
   margin: auto;
   border: 2px solid #ccc;
   border-radius: 8px;
