@@ -26,6 +26,7 @@ function onScanSuccess(decodedText, decodedResult) {
   .then(res => res.text())
   .then(result => {
     document.getElementById("status").innerText = "✅ Đã gửi: " + decodedText;
+
     // 🕒 Tạm dừng quét trong 1 giây
     setTimeout(() => {
       readerEl.classList.remove("qr-highlight");
@@ -39,7 +40,10 @@ function onScanSuccess(decodedText, decodedResult) {
   });
 }
 
-const html5QrCode = new Html5Qrcode(qrCodeRegionId);
+function startScanner(){
+  document.getElementById("reader").style.display = "block"; //lấy phần tử có id là reader thay đổi thuộc tính display thành block
+
+  const html5QrCode = new Html5Qrcode(qrCodeRegionId);
 html5QrCode.start(
   { facingMode: "environment" },
   { fps: 10,
@@ -53,3 +57,7 @@ html5QrCode.start(
   },
   onScanSuccess
 );
+}
+
+
+
