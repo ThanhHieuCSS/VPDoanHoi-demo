@@ -43,7 +43,15 @@ const html5QrCode = new Html5Qrcode(qrCodeRegionId);
 html5QrCode.start(
   { facingMode: "environment" },
   { fps: 10,
-    qrbox: { width: 300, height: 200 }//khung quét QR
+    //qrbox: { width: 300, height: 200 }//khung quét QR
+    qrbox: function(viewfinderWidth, viewfinderHeight) {
+      const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
+      return {
+        width: minEdge * 0.9,
+        height: minEdge * 0.6
+      };
+    }
+    
   },
   onScanSuccess
 );
