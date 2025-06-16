@@ -27,13 +27,13 @@ body {
 
 #reader {
   width: 100%;
-  max-width: 420px;
-  height: 450px; /* đặt chiều cao cố định */
+  max-width: 500px;
   margin: auto;
-  border: 2px solid #ccc;
-  border-radius: 8px; /* bo góc*/
+  position: relative;
+  border-radius: 8px;
   overflow: hidden;
 }
+
 
 #reader.qr-highlight {
   border-color: red;

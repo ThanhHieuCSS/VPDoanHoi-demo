@@ -46,10 +46,8 @@ html5QrCode.start(
     //qrbox: { width: 300, height: 200 }//khung quét QR
     qrbox: function(viewfinderWidth, viewfinderHeight) {
       const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
-      return {
-        width: minEdge * 0.8,
-        height: minEdge * 3
-      };
+      const size = minEdge * 0.75;
+      return { width: size, height: size };
     }
     
   },
