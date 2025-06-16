@@ -11,7 +11,19 @@
   <div id="reader"></div>
   <button onclick="startScanner()">Bắt đầu quét</button>
 
-  <script type="text/javascript">
+  <p id="status">⏳ Đang chờ quét...</p>
+  <p>Mã QR đã quét: <span id="qrText" class="highlight">...</span></p>
+  <audio id="beep" preload="auto">
+    <source src="beep.m4a" type="audio/mp4">
+    <source src="beep.mp3" type="audio/mpeg">
+  </audio>
+  <script src="script.js"></script>
+
+
+
+
+/*banner quảng cáo*/
+    <script type="text/javascript">
 	atOptions = {
 		'key' : 'adbb79b65c514df98c49619ad41a35b2',
 		'format' : 'iframe',
@@ -21,16 +33,6 @@
 	};
 </script>
 <script type="text/javascript" src="https://www.highperformanceformat.com/adbb79b65c514df98c49619ad41a35b2/invoke.js"></script>
-
-
-  <p id="status">⏳ Đang chờ quét...</p>
-  <p>Mã QR đã quét: <span id="qrText" class="highlight">...</span></p>
-  <audio id="beep" preload="auto">
-    <source src="beep.m4a" type="audio/mp4">
-    <source src="beep.mp3" type="audio/mpeg">
-  </audio>
-  <script src="script.js"></script>
-
 
   <script type="text/javascript">
 	atOptions = {
