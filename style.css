@@ -19,10 +19,6 @@ body {
 #reader {
   width: 300px;
 
-  /*height: 300px;*/
-
-  height: 300px;
-
   border: 4px solid transparent;
   border-radius: 10px;
   transition: border 0.3s ease;
