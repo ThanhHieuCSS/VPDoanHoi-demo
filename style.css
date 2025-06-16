@@ -18,11 +18,11 @@ body {
 
 #reader {
   width: 300px;
-<<<<<<< HEAD
+
   /*height: 300px;*/
-=======
+
   height: 300px;
->>>>>>> f8f56bc5c81694f12e1e3e89915f842d30347548
+
   border: 4px solid transparent;
   border-radius: 10px;
   transition: border 0.3s ease;
