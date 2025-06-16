@@ -43,7 +43,7 @@ const html5QrCode = new Html5Qrcode(qrCodeRegionId);
 html5QrCode.start(
   { facingMode: "environment" },
   { fps: 10,
-    qrbox: { width: 250, height: 250 }//khung quét QR
+    qrbox: { width: 300, height: 300 }//khung quét QR
   },
   onScanSuccess
 );
