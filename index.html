@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quét mã QR và gửi Google Sheets</title>
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>📷 Quét mã QR</h2>
+  <div id="reader"></div>
+  <button onclick="startScanner()">Bắt đầu quét</button>
+  <p id="status">⏳ Đang chờ quét...</p>
+  <p>Mã QR đã quét: <span id="qrText" class="highlight">...</span></p>
+  <audio id="beep" src="beep.mp3" preload="auto"></audio>
+  <script src="script.js"></script>
+
+  <script type="text/javascript">
+	atOptions = {
+		'key' : 'adbb79b65c514df98c49619ad41a35b2',
+		'format' : 'iframe',
+		'height' : 60,
+		'width' : 468,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="https://www.highperformanceformat.com/adbb79b65c514df98c49619ad41a35b2/invoke.js"></script>
+
+
+</body>
+</html>
