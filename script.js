@@ -3,7 +3,7 @@ const sheetURL = "https://script.google.com/macros/s/AKfycbx04-GtmrMIZAZI2E3g5i2
 const beepSound = document.getElementById("beep");
 const readerEl = document.getElementById("reader");
 
-
+let html5QrCode;// Biến toàn cục để lưu trữ đối tượng Html5Qrcode tránh để bên trong hàm srtScanner() thành biến cục bộ, dùng lại khi cần thiết
 
 
 function onScanSuccess(decodedText, decodedResult) {
@@ -40,10 +40,12 @@ function onScanSuccess(decodedText, decodedResult) {
   });
 }
 
+
+
 function startScanner(){
   document.getElementById("reader").style.display = "block"; //lấy phần tử có id là reader thay đổi thuộc tính display thành block
 
-  const html5QrCode = new Html5Qrcode(qrCodeRegionId);
+  html5QrCode = new Html5Qrcode(qrCodeRegionId); // bỏ "const" html5QrCode = new Html5Qrcode(qrCodeRegionId); nếu muốn sử dụng biến toàn cục
 html5QrCode.start(
   { facingMode: "environment" },
   { fps: 10,
