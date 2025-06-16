@@ -48,7 +48,7 @@ html5QrCode.start(
       const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
       return {
         width: minEdge * 0.8,
-        height: minEdge * 0.8
+        height: minEdge * 1.4
       };
     }
     
