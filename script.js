@@ -1,4 +1,4 @@
-const qrCodeRegionId = "reader";
+/*const qrCodeRegionId = "reader";
 const sheetURL = "https://script.google.com/macros/s/AKfycbx04-GtmrMIZAZI2E3g5i26F6x2yla5HW9SStqLavz_8rAUP6nuAgB08F42o792xE65MQ/exec";
 const beepSound = document.getElementById("beep");
 const readerEl = document.getElementById("reader");
@@ -66,6 +66,74 @@ html5QrCode.start(
   onScanSuccess
 );
 }
+*/
 
 
+const qrCodeRegionId = "reader";
+const sheetURL = "https://script.google.com/macros/s/AKfycbx04-GtmrMIZAZI2E3g5i26F6x2yla5HW9SStqLavz_8rAUP6nuAgB08F42o792xE65MQ/exec";
+const beepSound = document.getElementById("beep");
+const readerEl = document.getElementById("reader");
 
+let html5QrCode;
+let lastScannedText = "";      // 🧠 Lưu QR vừa quét
+let lastScanTime = 0;
+const cooldownMs = 2000;       // ⏱️ Khoảng thời gian chờ để không gửi trùng (ms)
+
+function onScanSuccess(decodedText, decodedResult) {
+  const now = Date.now();
+
+  // ❌ Bỏ qua nếu trùng QR trong thời gian ngắn
+  if (decodedText === lastScannedText && (now - lastScanTime < cooldownMs)) {
+    return;
+  }
+
+  // ✅ Cập nhật lần quét gần nhất
+  lastScannedText = decodedText;
+  lastScanTime = now;
+
+  // 🔊 Bíp & highlight
+  beepSound.play();
+  readerEl.classList.add("qr-highlight");
+
+  // 📌 Hiển thị
+  document.getElementById("qrText").innerText = decodedText;
+  document.getElementById("status").innerText = "📤 Đang gửi dữ liệu...";
+
+  // 🚀 Gửi mà không chờ (quét tiếp được liền)
+  fetch(sheetURL, {
+    method: "POST",
+    body: new URLSearchParams({ data: decodedText })
+  })
+    .then(res => res.text())
+    .then(result => {
+      document.getElementById("status").innerText = "✅ Đã gửi: " + decodedText;
+    })
+    .catch(error => {
+      document.getElementById("status").innerText = "❌ Lỗi gửi dữ liệu!";
+      console.error("Lỗi:", error);
+    });
+
+  // ⏳ Reset highlight sau 1 giây (không dừng quét)
+  setTimeout(() => {
+    readerEl.classList.remove("qr-highlight");
+    document.getElementById("status").innerText = "⏳ Đang chờ quét...";
+  }, 1000);
+}
+
+function startScanner() {
+  document.getElementById("reader").style.display = "block";
+
+  html5QrCode = new Html5Qrcode(qrCodeRegionId);
+  html5QrCode.start(
+    { facingMode: "environment" },
+    {
+      fps: 10,
+      qrbox: function(viewfinderWidth, viewfinderHeight) {
+        const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
+        const size = minEdge * 0.75;
+        return { width: size, height: size };
+      }
+    },
+    onScanSuccess
+  );
+}
