@@ -42,6 +42,7 @@ function onScanSuccess(decodedText, decodedResult) {
   .catch(error => {
     document.getElementById("status").innerText = "❌ Lỗi gửi dữ liệu!";
     console.error("Lỗi:", error);
+    isProcessing = false; // ⏳ Cho phép quét tiếp
   });
 }
 
