@@ -32,7 +32,7 @@ function onScanSuccess(decodedText, decodedResult) {
       readerEl.classList.remove("qr-highlight");
       html5QrCode.resume();
       document.getElementById("status").innerText = "⏳ Đang chờ quét...";
-    }, 500);
+    }, 100);
   })
   .catch(error => {
     document.getElementById("status").innerText = "❌ Lỗi gửi dữ liệu!";
@@ -48,7 +48,7 @@ function startScanner(){
   html5QrCode = new Html5Qrcode(qrCodeRegionId); // bỏ "const" html5QrCode = new Html5Qrcode(qrCodeRegionId); nếu muốn sử dụng biến toàn cục
 html5QrCode.start(
   { facingMode: "environment" },
-  { fps: 10,
+  { fps: 20,
     //qrbox: { width: 300, height: 200 }//khung quét QR
     qrbox: function(viewfinderWidth, viewfinderHeight) {
       const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
