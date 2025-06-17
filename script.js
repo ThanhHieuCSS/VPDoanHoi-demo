@@ -5,19 +5,23 @@ const readerEl = document.getElementById("reader");
 
 let html5QrCode;// Biến toàn cục để lưu trữ đối tượng Html5Qrcode tránh để bên trong hàm srtScanner() thành biến cục bộ, dùng lại khi cần thiết
 
+let isProcessing = false; // 🔒 Cờ để tránh xử lý trùng
 
 function onScanSuccess(decodedText, decodedResult) {
+
+  if (isProcessing) return;
+  isProcessing = true;
+
   document.getElementById("qrText").innerText = decodedText;
   document.getElementById("status").innerText = "📤 Đang gửi dữ liệu...";
   
     // 🔊 Phát tiếng bíp
     beepSound.play();
-
     // Hiện viền đỏ
     readerEl.classList.add("qr-highlight");
 
       // 🛑 Dừng quét ngay
-    html5QrCode.pause();
+    //html5QrCode.pause();
 
   fetch(sheetURL, {
     method: "POST",
@@ -30,9 +34,10 @@ function onScanSuccess(decodedText, decodedResult) {
     // 🕒 Tạm dừng quét trong 1 giây
     setTimeout(() => {
       readerEl.classList.remove("qr-highlight");
-      html5QrCode.resume();
+      //html5QrCode.resume();
+      isProcessing = false; // ⏳ Cho phép quét tiếp
       document.getElementById("status").innerText = "⏳ Đang chờ quét...";
-    }, 100);
+    }, 1000);
   })
   .catch(error => {
     document.getElementById("status").innerText = "❌ Lỗi gửi dữ liệu!";
