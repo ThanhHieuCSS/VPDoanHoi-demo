@@ -2,6 +2,8 @@ body {
   font-family: Arial;
   text-align: center;
   margin-top: 40px;
+  background: linear-gradient(to bottom, #dfa6ef, #ec93c7); /* Gradient từ đen sang xanh đậm */
+  height: 100vh; /* Chiều cao bằng 100% chiều cao màn hình */
 }
 /*#reader {
   width: 300px;
