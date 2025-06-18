@@ -1,123 +1,84 @@
-/*const qrCodeRegionId = "reader";
-const sheetURL = "https://script.google.com/macros/s/AKfycbx04-GtmrMIZAZI2E3g5i26F6x2yla5HW9SStqLavz_8rAUP6nuAgB08F42o792xE65MQ/exec";
-const beepSound = document.getElementById("beep");
-const readerEl = document.getElementById("reader");
-
-let html5QrCode;// Biến toàn cục để lưu trữ đối tượng Html5Qrcode tránh để bên trong hàm srtScanner() thành biến cục bộ, dùng lại khi cần thiết
-
-let isProcessing = false; // 🔒 Cờ để tránh xử lý trùng
-
-function onScanSuccess(decodedText, decodedResult) {
-
-  if (isProcessing) return;
-  isProcessing = true;
-
-  document.getElementById("qrText").innerText = decodedText;
-  document.getElementById("status").innerText = "📤 Đang gửi dữ liệu...";
-  
-    // 🔊 Phát tiếng bíp
-    beepSound.play();
-    // Hiện viền đỏ
-    readerEl.classList.add("qr-highlight");
-
-      // 🛑 Dừng quét ngay
-    //html5QrCode.pause();
-
-  fetch(sheetURL, {
-    method: "POST",
-    body: new URLSearchParams({ data: decodedText })
-  })
-  .then(res => res.text())
-  .then(result => {
-    document.getElementById("status").innerText = "✅ Đã gửi: " + decodedText;
-
-    // 🕒 Tạm dừng quét trong 1 giây
-    setTimeout(() => {
-      readerEl.classList.remove("qr-highlight");
-      //html5QrCode.resume();
-      isProcessing = false; // ⏳ Cho phép quét tiếp
-      document.getElementById("status").innerText = "⏳ Đang chờ quét...";
-    }, 1000);
-  })
-  .catch(error => {
-    document.getElementById("status").innerText = "❌ Lỗi gửi dữ liệu!";
-    console.error("Lỗi:", error);
-    isProcessing = false; // ⏳ Cho phép quét tiếp
-  });
-}
-
-
-
-function startScanner(){
-  document.getElementById("reader").style.display = "block"; //lấy phần tử có id là reader thay đổi thuộc tính display thành block
-
-  html5QrCode = new Html5Qrcode(qrCodeRegionId); // bỏ "const" html5QrCode = new Html5Qrcode(qrCodeRegionId); nếu muốn sử dụng biến toàn cục
-html5QrCode.start(
-  { facingMode: "environment" },
-  { fps: 20,
-    //qrbox: { width: 300, height: 200 }//khung quét QR
-    qrbox: function(viewfinderWidth, viewfinderHeight) {
-      const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
-      const size = minEdge * 0.75;
-      return { width: size, height: size };
-    }
-    
-  },
-  onScanSuccess
-);
-}
-*/
-
-
 const qrCodeRegionId = "reader";
 const sheetURL = "https://script.google.com/macros/s/AKfycbx04-GtmrMIZAZI2E3g5i26F6x2yla5HW9SStqLavz_8rAUP6nuAgB08F42o792xE65MQ/exec";
 const beepSound = document.getElementById("beep");
 const readerEl = document.getElementById("reader");
 
-let html5QrCode;
-let lastScannedText = "";      // 🧠 Lưu QR vừa quét
-let lastScanTime = 0;
-const cooldownMs = 2000;       // ⏱️ Khoảng thời gian chờ để không gửi trùng (ms)
 
-function onScanSuccess(decodedText, decodedResult) {
+let lastScannedText = "";
+let lastScannedTime = 0;
+const dedupCooldown = 2500; // 5 giây: không quét lại cùng mã
+
+let html5QrCode;
+let isCooldown = false;        // ⏱ Dừng 1s giữa các lần quét
+let queue = [];
+let isSending = false;
+
+function onScanSuccess(decodedText) {
+
   const now = Date.now();
 
-  // ❌ Bỏ qua nếu trùng QR trong thời gian ngắn
-  if (decodedText === lastScannedText && (now - lastScanTime < cooldownMs)) {
+  // ❌ Bỏ qua nếu mã trùng trong thời gian gần đây
+  if (decodedText === lastScannedText && (now - lastScannedTime < dedupCooldown)) {
+    console.log("⛔ Trùng mã, bỏ qua:", decodedText);
     return;
   }
 
-  // ✅ Cập nhật lần quét gần nhất
+  // ✅ Cập nhật mã gần nhất
   lastScannedText = decodedText;
-  lastScanTime = now;
+  lastScannedTime = now;
 
-  // 🔊 Bíp & highlight
+  if (isCooldown) return;
+
+  isCooldown = true; // ⛔ Tạm dừng quét tiếp
+  setTimeout(() => {
+    isCooldown = false; // ✅ Sau 1s mới quét lại được
+  }, 1000);
+
+
+
+  // 🔊 Bíp + viền
   beepSound.play();
   readerEl.classList.add("qr-highlight");
+  setTimeout(() => readerEl.classList.remove("qr-highlight"), 800);
 
-  // 📌 Hiển thị
+  // 📌 Hiển thị nội dung
   document.getElementById("qrText").innerText = decodedText;
   document.getElementById("status").innerText = "📤 Đang gửi dữ liệu...";
 
-  // 🚀 Gửi mà không chờ (quét tiếp được liền)
+  // 🧠 Đưa vào hàng đợi
+  queue.push(decodedText);
+  saveQueue();
+  processQueue();
+}
+
+function saveQueue() {
+  localStorage.setItem("qrQueue", JSON.stringify(queue));
+}
+
+function processQueue() {
+  if (isSending || queue.length === 0) return;
+
+  isSending = true;
+  const data = queue[0];
+
   fetch(sheetURL, {
     method: "POST",
-    body: new URLSearchParams({ data: decodedText })
+    body: new URLSearchParams({ data: data })
   })
-    .then(res => res.text())
-    .then(result => {
-      document.getElementById("status").innerText = "✅ Đã gửi: " + decodedText;
+    .then((res) => res.text())
+    .then((result) => {
+      document.getElementById("status").innerText = "✅ Đã gửi: " + data;
+      queue.shift();
+      saveQueue();
+      isSending = false;
+      processQueue(); // Tiếp tục gửi nếu còn
     })
-    .catch(error => {
-      document.getElementById("status").innerText = "❌ Lỗi gửi dữ liệu!";
-      console.error("Lỗi:", error);
+    .catch((err) => {
+      console.error("❌ Lỗi gửi:", err);
+      document.getElementById("status").innerText = "❌ Gửi lỗi, sẽ thử lại...";
+      isSending = false;
+      setTimeout(processQueue, 2000); // Thử lại sau 2s
     });
-
-  // ⏳ Reset highlight sau 1 giây (không dừng quét)
-  setTimeout(() => {
-    readerEl.classList.remove("qr-highlight");
-    document.getElementById("status").innerText = "⏳ Đang chờ quét...";
-  }, 1000);
 }
 
 function startScanner() {
@@ -127,8 +88,8 @@ function startScanner() {
   html5QrCode.start(
     { facingMode: "environment" },
     {
-      fps: 10,
-      qrbox: function(viewfinderWidth, viewfinderHeight) {
+      fps: 20,
+      qrbox: function (viewfinderWidth, viewfinderHeight) {
         const minEdge = Math.min(viewfinderWidth, viewfinderHeight);
         const size = minEdge * 0.75;
         return { width: size, height: size };
@@ -137,3 +98,16 @@ function startScanner() {
     onScanSuccess
   );
 }
+
+// 🔄 Tải lại hàng đợi nếu có
+window.addEventListener("load", () => {
+  try {
+    const saved = JSON.parse(localStorage.getItem("qrQueue") || "[]");
+    if (saved.length > 0) {
+      queue.push(...saved);
+      processQueue();
+    }
+  } catch (e) {
+    console.warn("Không thể load queue:", e);
+  }
+});
