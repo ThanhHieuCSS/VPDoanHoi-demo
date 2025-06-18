@@ -48,7 +48,7 @@ body {
 #typing {
     color: rgb(13, 29, 18);
     /*border-right: 3px solid white; /* Hiệu ứng con trỏ nhấp nháy */
-    font-size: 3vw; /* Chữ bằng 5% chiều rộng màn hình */
+    font-size: 4vw; /* Chữ bằng 5% chiều rộng màn hình */
     white-space: nowrap;
     overflow: hidden;
     background: linear-gradient(to right, #ac2df6, #0863ea); /* Màu gradient giống nền */
@@ -58,7 +58,7 @@ body {
 }
 
 .inline-text {
-    font-size: 2vw; /* Kích thước chữ 4vw căn theo thiết bị */
+    font-size: 3vw; /* Kích thước chữ 4vw căn theo thiết bị */
     font-weight: bold; /* Chữ in đậm */
     color: #000000; /* Màu chữ trắng */
     margin-top: 20px; /* Tạo khoảng cách giữa các dòng chữ */
