@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <title>Quét mã QR và gửi Google Sheets</title>
+  <title>Điểm Danh Sinh Viên</title>
   <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
   <link rel="stylesheet" href="style.css" />
 
@@ -10,7 +10,10 @@
 
 </head>
 <body>
-  <h2>📷 Quét mã QR</h2>
+  <h2 class="inline-text">
+	Văn Phòng Đoàn-Hội
+	<span id="typing"></span>
+  </h2>
   <div id="reader"></div>
   <button onclick="startScanner()">Bắt đầu quét</button>
 

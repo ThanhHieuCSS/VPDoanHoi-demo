@@ -43,3 +43,24 @@ body {
   border-width: 4px;
   border-style: solid;
 }
+
+
+#typing {
+    color: rgb(13, 29, 18);
+    /*border-right: 3px solid white; /* Hiệu ứng con trỏ nhấp nháy */
+    font-size: 3vw; /* Chữ bằng 5% chiều rộng màn hình */
+    white-space: nowrap;
+    overflow: hidden;
+    background: linear-gradient(to right, #ac2df6, #0863ea); /* Màu gradient giống nền */
+    background-clip: text; /* Áp dụng gradient lên chữ */
+    -webkit-background-clip: text; /* Hỗ trợ trình duyệt WebKit */
+    -webkit-text-fill-color: transparent; /* Làm chữ trong suốt để thấy màu gradient */
+}
+
+.inline-text {
+    font-size: 2vw; /* Kích thước chữ 4vw căn theo thiết bị */
+    font-weight: bold; /* Chữ in đậm */
+    color: #000000; /* Màu chữ trắng */
+    margin-top: 20px; /* Tạo khoảng cách giữa các dòng chữ */
+    text-align: center; /* Căn giữa chữ */
+}
