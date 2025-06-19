@@ -76,3 +76,19 @@ body {
             text-align: center;
             margin: 0 auto;
         }
+
+
+
+#startBtn, #stopBtn {
+  margin-top: 2px; /* Khoảng cách trên nút */
+  background: linear-gradient(-15deg, #171973, #cfbce7,#e160f3,#8e7ffe);
+  color: white; /* Màu chữ */
+  padding: 10px 20px; /* Khoảng cách trong nút */
+  border: none; /* Không viền */
+  border-radius: 35px; /* Bo góc */
+  cursor: pointer; /* Hiệu ứng con trỏ khi hover */
+  font-size: 16px; /* Kích thước chữ */
+  font-size: 20px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}        
