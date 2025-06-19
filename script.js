@@ -83,6 +83,8 @@ function processQueue() {
 
 function startScanner() {
   document.getElementById("reader").style.display = "block";
+  document.getElementById("startBtn").style.display = "none";
+  document.getElementById("stopBtn").style.display = "inline-block";
 
   html5QrCode = new Html5Qrcode(qrCodeRegionId);
   html5QrCode.start(
@@ -97,6 +99,16 @@ function startScanner() {
     },
     onScanSuccess
   );
+}
+
+function stopScanner() {
+  html5QrCode.stop().then(() => {
+    document.getElementById("reader").style.display = "none";
+    document.getElementById("startBtn").style.display = "inline-block";
+    document.getElementById("stopBtn").style.display = "none";
+  }).catch(err => {
+    console.error("Lỗi khi dừng camera:", err);
+  });
 }
 
 // 🔄 Tải lại hàng đợi nếu có

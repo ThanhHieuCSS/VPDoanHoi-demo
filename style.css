@@ -2,7 +2,7 @@ body {
   font-family: Arial;
   text-align: center;
   margin-top: 40px;
-  background: linear-gradient(to bottom, #dfa6ef, #ec93c7); /* Gradient từ đen sang xanh đậm */
+  background: linear-gradient(45deg, #ff5faf, #79b9f1,#fcb5f8,#39f5de); /* Gradient từ đen sang xanh đậm góc 45 độ or to bottom là từ trên xuống or to right */
   height: 100vh; /* Chiều cao bằng 100% chiều cao màn hình */
 }
 /*#reader {
