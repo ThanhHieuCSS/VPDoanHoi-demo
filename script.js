@@ -130,7 +130,7 @@ window.addEventListener("load", () => {
 
 //-------------- hàm vị trí chữ gõ -------------------
 // Mảng chứa các từ sẽ hiển thị luân phiên
-const texts = ["STU","Công Nghệ Sài Gòn"];
+const texts = ["STU","Trường Đại Học Công Nghệ Sài Gòn"];
 
 let textIndex = 0; // Vị trí của từ hiện tại trong mảng texts
 let charIndex = 0; // Vị trí ký tự hiện tại trong từ
