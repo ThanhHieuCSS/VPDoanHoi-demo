@@ -1,5 +1,5 @@
 const qrCodeRegionId = "reader";
-const sheetURL = "https://script.google.com/macros/s/AKfycby6oWtJUuqB8RhxejD4tAmhT9UfUwcIWzte9nZrjv8sy1F387WpMgL598Wi-32fTYxDuQ/exec";
+const sheetURL = "https://script.google.com/macros/s/AKfycbzOem6XyhjVA1XwjnRO3LyrubS-DRK7aQoQ38xJvYHgOxMOQhAuxY3jeBCjaWLS3xkztQ/exec";
 const beepSound = document.getElementById("beep");
 const readerEl = document.getElementById("reader");
 
