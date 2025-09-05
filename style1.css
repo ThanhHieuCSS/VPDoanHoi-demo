@@ -51,7 +51,7 @@ h2 {
   padding: 20px;
   transition: transform 0.2s, box-shadow 0.2s;
 
-  flex: 1 1 300px;   /* Chiếm tối thiểu 300px, còn lại chia đều */
+  flex: 1 1 45%;   /* Chiếm tối thiểu 300px, còn lại chia đều */
   max-width: 320px;  /* Giới hạn để không quá to */
   box-sizing: border-box;
 }
