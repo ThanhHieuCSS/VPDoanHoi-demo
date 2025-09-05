@@ -36,8 +36,9 @@ h2 {
 }
 
 .event-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;          /* Cho phép xuống hàng */
+  justify-content: center;  /* Canh giữa các box */
   gap: 20px;
   max-width: 1000px;
   margin: 0 auto;
@@ -49,6 +50,10 @@ h2 {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   padding: 20px;
   transition: transform 0.2s, box-shadow 0.2s;
+
+  flex: 1 1 300px;   /* Chiếm tối thiểu 300px, còn lại chia đều */
+  max-width: 320px;  /* Giới hạn để không quá to */
+  box-sizing: border-box;
 }
 
 .event-card:hover {

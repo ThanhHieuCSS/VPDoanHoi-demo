@@ -1,0 +1,52 @@
+/*PC*/
+@media (min-width:992px){
+    
+}
+
+/*Tablet & mobile*/
+@media (max-width: 991.98px){
+    
+
+}
+
+/*Tablet*/
+@media (min-width: 768px) and (max-width: 991.98px){
+    
+}
+
+/*Mobile*/
+@media (max-width: 767.98px){
+    h2{
+        font-size: 60px;
+        margin-bottom: 30px;
+    }
+
+    h3{
+        font-size: 40px;
+        
+    }
+    .event-card p{
+        font-size: 30px;
+    }
+
+    .event-list {
+        display: flex;
+        flex-wrap: wrap;          /* Cho phép xuống hàng */
+        justify-content: center; /* Căn đều khoảng cách giữa các box */
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .event-card {
+        
+        flex: 1 1 100%;   /* ✅ mỗi box chiếm 100% chiều ngang */
+        max-width: 500px;  /* tránh bị giới hạn */
+    }
+
+    .attendance-btn{
+        font-size: 30px;
+    }
+    
+
+}
