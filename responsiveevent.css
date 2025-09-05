@@ -15,7 +15,7 @@
 }
 
 /*Mobile*/
-@media (max-width: 767.98px){
+@media (max-width: 768px){
     h2{
         font-size: 60px;
         margin-bottom: 30px;
@@ -34,7 +34,7 @@
         flex-wrap: wrap;          /* Cho phép xuống hàng */
         justify-content: center; /* Căn đều khoảng cách giữa các box */
         gap: 40px;
-        max-width: 1000px;
+        max-width: 100%;
         margin: 0 auto;
     }
 
