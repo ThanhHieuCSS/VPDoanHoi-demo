@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Điểm Danh Sinh Viên</title>
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
+</head>
+<body>
+	<h2 class="inline-text">
+			Văn Phòng Đoàn-Hội
+			<span id="typing"></span>
+	</h2>
+
+	<!-- Hiển thị sự kiện đang điểm danh -->
+  <h3 id="eventTitle">Đang tải sự kiện...</h3>
+
+
+	<div class="scanner-container">
+		
+		<div id="reader"></div>
+		<button id="startBtn" onclick="startScanner()">Bắt đầu quét</button>
+  		<button id="stopBtn" onclick="stopScanner()" style="display: none;">Dừng quét</button>
+		<p id="status">⏳ Đang chờ quét...</p>
+		<p>Mã QR đã quét: <span id="qrText" class="highlight">...</span></p>
+	</div>
+  <audio id="beep" preload="auto">
+    <source src="beep.m4a" type="audio/mp4">
+    <source src="beep.mp3" type="audio/mpeg">
+  </audio>
+  <script src="script.js"></script>
+
+  
+  <script>
+    // Lấy ID sự kiện từ URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventId = urlParams.get("event");
+
+    const eventTitle = document.getElementById("eventTitle");
+    if (eventId) {
+      eventTitle.textContent = "Bạn đang điểm danh cho Sự kiện " + eventId;
+    } else {
+      eventTitle.textContent = "❌ Không tìm thấy sự kiện!";
+    }
+  </script>
+
+<!--banner quảng cáo 	
+<div class="banner1">
+	<script type="text/javascript">
+	atOptions = {
+		'key' : 'fe79778ccbaf97c5c6932d48f0005823',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/fe79778ccbaf97c5c6932d48f0005823/invoke.js"></script>
+		
+</div>
+
+<div class="banner2">
+	<script type="text/javascript">
+	atOptions = {
+		'key' : 'adbb79b65c514df98c49619ad41a35b2',
+		'format' : 'iframe',
+		'height' : 60,
+		'width' : 468,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="https://www.highperformanceformat.com/adbb79b65c514df98c49619ad41a35b2/invoke.js"></script>
+		
+</div>
+
+<div class="banner3">
+	<script type="text/javascript">
+	atOptions = {
+		'key' : '3b9c5cf2574a226172d538ea8186a421',
+		'format' : 'iframe',
+		'height' : 300,
+		'width' : 160,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/3b9c5cf2574a226172d538ea8186a421/invoke.js"></script>
+		
+</div>
+
+<div class="banner4">
+	<script type="text/javascript">
+	atOptions = {
+		'key' : 'e51ecd30fcf477d4a57d26aa97f6a048',
+		'format' : 'iframe',
+		'height' : 250,
+		'width' : 300,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/e51ecd30fcf477d4a57d26aa97f6a048/invoke.js"></script>
+
+		
+</div>
+
+<div class="banner5">
+	<script type="text/javascript">
+	atOptions = {
+		'key' : '05fde89d46bc86ab119c519a5d881de8',
+		'format' : 'iframe',
+		'height' : 50,
+		'width' : 320,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/05fde89d46bc86ab119c519a5d881de8/invoke.js"></script>
+		
+</div>
+
+<div class="banner6">
+	<script type="text/javascript">
+	atOptions = {
+		'key' : '47f594598cec4e48f360dc4e188e40fb',
+		'format' : 'iframe',
+		'height' : 600,
+		'width' : 160,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/47f594598cec4e48f360dc4e188e40fb/invoke.js"></script>		
+</div>
+-->
+</body>
+</html>
