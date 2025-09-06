@@ -47,6 +47,15 @@
           "<p style='color:red;'>❌ Lỗi tải sự kiện, vui lòng thử lại sau!</p>";
         console.error("Lỗi:", err);
       });
+
   </script>
+
+  <script>
+  function chonSuKien(eventName) {
+    // Gửi tên sự kiện sang trang scan
+    window.location.href = `scan.html?event=${encodeURIComponent(eventName)}`;
+  }
+</script>
+
 </body>
 </html>

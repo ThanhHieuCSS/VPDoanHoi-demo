@@ -44,6 +44,9 @@ body {
     background-clip: text; /* Áp dụng gradient lên chữ */
     -webkit-background-clip: text; /* Hỗ trợ trình duyệt WebKit */
     -webkit-text-fill-color: transparent; /* Làm chữ trong suốt để thấy màu gradient */
+
+    display: inline-block;
+    min-height: 2em; /* chiều cao ít nhất bằng 1 dòng */
 }
 
 .inline-text {

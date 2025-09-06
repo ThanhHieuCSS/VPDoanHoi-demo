@@ -5,6 +5,8 @@
   <title>Điểm Danh Sinh Viên</title>
   <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="responsivescan.css"/>
+</head>
 
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 
@@ -33,20 +35,23 @@
   </audio>
   <script src="script.js"></script>
 
-  
-  <script>
+
+<!--<script>
+  window.addEventListener("DOMContentLoaded", function () {
     // Lấy ID sự kiện từ URL
     const urlParams = new URLSearchParams(window.location.search);
     const eventId = urlParams.get("event");
 
     const eventTitle = document.getElementById("eventTitle");
+
     if (eventId) {
-      eventTitle.textContent = "Bạn đang điểm danh cho Sự kiện " + eventId;
+      eventTitle.textContent = "📌 Bạn đang điểm danh cho sự kiện: " + eventId;
     } else {
       eventTitle.textContent = "❌ Không tìm thấy sự kiện!";
     }
-  </script>
-
+  });
+</script>
+-->
 
 
 <!--banner quảng cáo 	

@@ -1,0 +1,34 @@
+/*PC*/
+@media (min-width:992px){
+
+}
+
+/*Tablet & mobile*/
+@media (max-width:991.98px){
+
+}
+
+/*Tablet*/
+@media (min-width:768px) and (max-width: 991.98px){
+
+}
+/*Mobile*/
+@media (max-width:767.98px){
+    #typing{
+        font-size: 52px;   /* ✅ tăng kích thước cho cả cụm */
+        display: block;         
+        white-space: normal;    /* cho phép xuống dòng */
+        text-align: center;     /* căn giữa chữ nếu muốn */
+    }
+
+   h2.inline-text {
+        font-size: 52px;   /* ✅ tăng kích thước cho cả cụm */
+        font-weight: bold;
+        line-height: 1.4;
+        text-align: center; /* nếu muốn căn giữa toàn cụm */
+    }
+    #eventTitle{
+        font-size: 40px;
+    }
+
+}
