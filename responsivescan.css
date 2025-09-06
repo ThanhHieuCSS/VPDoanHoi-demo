@@ -24,6 +24,7 @@
         font-weight: bold;
         line-height: 1.4;
         text-align: center; /* nếu muốn căn giữa toàn cụm */
+        margin-top: 1px; /* khoảng cách trên */
     }
     #eventTitle{
         font-size: 10px;

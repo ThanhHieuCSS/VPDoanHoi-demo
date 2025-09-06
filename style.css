@@ -57,7 +57,7 @@ body {
     font-size: 3vw; /* Kích thước chữ 4vw căn theo thiết bị */
     font-weight: bold; /* Chữ in đậm */
     color: #000000; /* Màu chữ trắng */
-    margin-top: 150px; /* Tạo khoảng cách giữa các dòng chữ */
+    margin-top: 1px; /* khoảng cách trên */
     text-align: center; /* Căn giữa chữ */
 }
 
