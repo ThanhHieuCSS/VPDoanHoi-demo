@@ -15,18 +15,24 @@
 /*Mobile*/
 @media (max-width:767.98px){
     #typing{
-        font-size: 22px;   /* ✅ tăng kích thước cho cả cụm */
+        font-size: 18px;   /* ✅ tăng kích thước cho cả cụm */
         display: block;           
     }
 
    h2.inline-text {
-        font-size: 22px;   /* ✅ tăng kích thước cho cả cụm */
+        font-size: 18px;   /* ✅ tăng kích thước cho cả cụm */
         font-weight: bold;
         line-height: 1.4;
         text-align: center; /* nếu muốn căn giữa toàn cụm */
     }
     #eventTitle{
-        font-size: 15px;
+        font-size: 10px;
+    }
+
+    .scanner-container {
+        width: 80%;  /* Chiếm toàn bộ chiều ngang */
+        max-width: none; /* Bỏ giới hạn chiều ngang */
+        padding: 10px; /* Tăng padding để không quá sát viền */
     }
 
 }
