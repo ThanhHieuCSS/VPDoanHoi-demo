@@ -45,8 +45,12 @@ body {
     -webkit-background-clip: text; /* Hỗ trợ trình duyệt WebKit */
     -webkit-text-fill-color: transparent; /* Làm chữ trong suốt để thấy màu gradient */
 
-    display: inline-block;
+    display: block; /* phần tử chiếm nguyên 1 hàng-inline block thì các phần tử khác vẫn trên hàng của phần tử này */
     min-height: 2em; /* chiều cao ít nhất bằng 1 dòng */
+    white-space: normal;    /* cho phép xuống dòng */
+    text-align: center;     /* căn giữa chữ nếu muốn */
+
+    
 }
 
 .inline-text {
