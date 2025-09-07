@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 const qrCodeRegionId = "reader";
-const sheetURL = "https://script.google.com/macros/s/AKfycby94v09vkaLzDIQ0S480qidy90pBjGWJ2oTWkMUzdDD7ke1AdODCcJxypiyerB2wkV_AQ/exec";
+const sheetURL = "https://script.google.com/macros/s/AKfycbybvZeywoGbnxVvSIqLjhjys2D-DjjjA4yCC3osA41Xd1kjb6oDciAOkBBTcT_yd_117w/exec";
 const beepSound = document.getElementById("beep");
 const readerEl = document.getElementById("reader");
 
